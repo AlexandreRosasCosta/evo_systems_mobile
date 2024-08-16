@@ -14,33 +14,26 @@
 
 O projeto segue uma estrutura organizada para facilitar a manutenção e escalabilidade:
 
-lib/
-│
-├── api/
-│   └── api_films.dart # Interação com a API The Movie Database para buscar dados de filmes
-│
-├── models/
-│   └── films.dart                    # Modelo de dados para os filmes
-│
-├── page/
-│   ├── details.dart                  # Página de detalhes do filme
-│   ├── home.dart                     # Página inicial exibindo categorias de filmes
-│   └── search.dart                   # Página de pesquisa de filmes
-│
-├── services/
-│   └── translator.dart               # Serviço de tradução de texto usando Google Translator
-│
-├── utils/
-│   ├── default_constants.dart        # Arquivo de constantes (deve ser renomeado e configurado seguindo descrição)
-│   └── formatters.dart               # Funções de formatação, como datas e outras possíveis formatações
-│
-├── widgets/
-│   ├── back_btn.dart                 # Widget para o botão de voltar
-│   ├── film_slider.dart              # Widget para exibir carrossel de filmes
-│   ├── main_slider.dart              # Widget para o carrossel principal da tela inicial
-│   └── overview_translator.dart      # Widget para tradução e exibição do resumo do filme
-│
-└── main.dart                         # Ponto de entrada do aplicativo
+- lib/
+    - api/
+        - api_films.dart                # Interação com APIs externas para buscar dados de filmes
+    - models/
+        - films.dart                    # Modelo de dados para os filmes
+    - page/
+        - details.dart                  # Página de detalhes do filme
+        - home.dart                     # Página inicial exibindo categorias de filmes
+        - search.dart                   # Página de pesquisa de filmes
+    - services/
+        - translator.dart               # Serviço de tradução de texto usando Google Translator
+    - utils/
+        - default_constants.dart        # Arquivo de constantes (deve ser renomeado e configurado)
+        - formatters.dart               # Funções de formatação, como datas
+    - widgets/
+        - back_btn.dart                 # Widget para o botão de voltar
+        - film_slider.dart              # Widget para exibir carrossel de filmes
+        - main_slider.dart              # Widget para o carrossel principal da tela inicial
+        - overview_translator.dart      # Widget para tradução e exibição do resumo do filme
+    - main.dart # Ponto de entrada do aplicativo
 
 ## Configuração Inicial
 
