@@ -53,15 +53,12 @@ Antes de executar o projeto, é necessário configurar o arquivo de constantes:
 1. **Clone o repositório:**
    git clone https://github.com/AlexandreRosasCosta/evo_systems_mobile.git
 
-2. **Navegue até o diretório do projeto:**
-    cd evo_systems_mobile
+2. **Renomeie e configure o arquivo default_constants.dart conforme instruído acima.**
 
-3. **Renomeie e configure o arquivo default_constants.dart conforme instruído acima.**
-
-4. **Instale as dependências:**
+3. **Instale as dependências:**
     flutter pub get
 
-5. **Execute o aplicativo:**
+4. **Execute o aplicativo:**
     flutter run
 
 ## Funcionalidades Futuras
