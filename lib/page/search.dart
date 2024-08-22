@@ -5,8 +5,8 @@ import 'package:evo_systems_mobile/services/translator.dart';
 import 'package:evo_systems_mobile/utils/constants.dart';
 import 'package:evo_systems_mobile/utils/formatters.dart';
 import 'package:evo_systems_mobile/widgets/back_btn.dart';
+import 'package:evo_systems_mobile/widgets/overview_translator.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class Search extends StatefulWidget {
   const Search({ super.key });
@@ -19,6 +19,22 @@ class Search extends StatefulWidget {
 class _SearchState extends State<Search> {
   List<Films> filmes = [];
   ApiFilmes api = ApiFilmes();
+  String? hintText= 'Enter the movie name...',
+  ano = 'Year',
+  classificacao = 'Released';
+
+  @override
+  void initState() {
+    super.initState();
+    _dynamicText();
+  }
+
+  Future<void> _dynamicText() async {
+    hintText = Translate().isEnglish? 'Enter the movie name...' : await Translate().traduzirTexto('Enter the movie name...');
+    ano =Translate().isEnglish? 'Year': await Translate().traduzirTexto('Year');
+    classificacao = Translate().isEnglish? 'Rating': await Translate().traduzirTexto('Rating');
+    setState(() {}); 
+  }
 
   void buscarFilmes(String query) async
   {
@@ -43,36 +59,11 @@ class _SearchState extends State<Search> {
       appBar: AppBar(
         leading: const BackBtn(),
         backgroundColor: Constants.backgroundColor,
-        title: Translate().isEnglish ? //Deixar para traduzir automaticamente
-              Text(
-                "Search", 
-                style: GoogleFonts.aBeeZee(fontSize: 20),
-              )
-              : Text(
-                "Pesquisar",
-                style: GoogleFonts.aBeeZee(fontSize: 20),
-              ), 
-
-              // Fica mais ou menos assim com o tradutor:
-              /*:  FutureBuilder(
-                future: Translate().traduzirTexto('Search', Constants.currentLanguage, 'pt'), 
-                builder: (context, snapshot) {
-                  if (snapshot.connectionState == ConnectionState.waiting) {
-                    return const CircularProgressIndicator();
-                  } else if (snapshot.hasError) {
-                    return const Text('Erro ao traduzir o texto...');
-                  } else {
-                    return Text(
-                      snapshot.data ?? 'Texto não disponível',
-                      style: GoogleFonts.roboto(
-                        fontSize: 20,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    );
-                  }
-                },
-              ), */
-
+        title: OverviewTranslator(
+                textoOriginal: 'Search',
+                fontSize: 20,
+                fontWeight: FontWeight.normal,
+               ),
         centerTitle: true,
       ),
       body: Padding(
@@ -82,7 +73,7 @@ class _SearchState extends State<Search> {
             // Barra de Pesquisa
             TextField(
               decoration: InputDecoration(
-                hintText: Translate().isEnglish ? 'Enter de movie name...' : 'Digite o nome do filme...',
+                hintText: hintText ?? 'Enter de movie name...', 
                 prefixIcon: const Icon(Icons.search),
               ),
               onChanged: buscarFilmes,
@@ -105,7 +96,7 @@ class _SearchState extends State<Search> {
                     : const Icon(Icons.image_not_supported, size: 50.0),
                     title: Text(filme.titulo),
                     subtitle: Text(
-                      'Ano: ${Formatters().formatarAno(filme.dataLancamento)} | Classificação: ${filme.classificacao.toStringAsFixed(1)}',
+                      '$ano: ${Formatters().formatarAno(filme.dataLancamento)} | $classificacao: ${filme.classificacao.toStringAsFixed(1)}',
                     ),
                     onTap: (){
                         Navigator.push(
